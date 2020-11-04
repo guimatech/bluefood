@@ -1,9 +1,29 @@
 HELP.md
+*.java.hsp
+*.sonarj
+*.sw*
+.DS_Store
+.settings
+.springBeans
+bin
+build.sh
+integration-repo
+ivy-cache
+jxl.log
+jmx.log
+derby.log
+spring-test/test-output/
 .gradle
+argfile*
+pom.xml
+activemq-data/
+
+classes/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+target/
 
 ### STS ###
 .apt_generated
