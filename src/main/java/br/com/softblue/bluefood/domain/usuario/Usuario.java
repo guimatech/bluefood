@@ -30,15 +30,18 @@ public class Usuario implements Serializable {
 	
 	@NotBlank(message = "O nome não pode ser vázio")
 	@Size(max = 80, message = "O nome é muito grande")
+	@Column(nullable = false)
 	private String nome;
 	
 	@NotBlank(message = "O e-mail não pode ser vázio")
 	@Size(max = 60, message = "O e-mail é muito grande")
 	@Email(message = "O e-mail é inválido")
+	@Column(nullable = false)
 	private String email;
 	
 	@NotBlank(message = "A senha não pode ser vázia")
 	@Size(max = 80, message = "A senha é muito grande")
+	@Column(nullable = false)
 	private String senha;
 	
 	@NotBlank(message = "O telefone não pode ser vázio")
