@@ -3,6 +3,7 @@ package br.com.softblue.bluefood.application.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.softblue.bluefood.application.exception.ValidationException;
 import br.com.softblue.bluefood.domain.cliente.Cliente;
 import br.com.softblue.bluefood.domain.cliente.ClienteRepository;
 
@@ -16,6 +17,13 @@ public class ClienteService {
 		
 		if (!validateEmail(cliente.getEmail(), cliente.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
+		}
+		
+		if (cliente.getId() != null) {
+			Cliente clienteDB = clienteRepository.findById(cliente.getId()).orElseThrow();
+			cliente.setSenha(clienteDB.getSenha());
+		} else {
+			cliente.encryptPassword();
 		}
 		
 		clienteRepository.save(cliente);

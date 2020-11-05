@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.softblue.bluefood.application.exception.ValidationException;
 import br.com.softblue.bluefood.application.service.ClienteService;
-import br.com.softblue.bluefood.application.service.ValidationException;
 import br.com.softblue.bluefood.domain.cliente.Cliente;
 
 @Controller
