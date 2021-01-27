@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.softblue.bluefood.application.exception.ValidationException;
 import br.com.softblue.bluefood.application.service.ClienteService;
+import br.com.softblue.bluefood.application.service.RestauranteService;
 import br.com.softblue.bluefood.domain.cliente.Cliente;
+import br.com.softblue.bluefood.domain.restaurante.CategoriaRestauranteRepository;
 import br.com.softblue.bluefood.domain.restaurante.Restaurante;
 
 @Controller
@@ -23,10 +25,17 @@ public class PublicController {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private RestauranteService restauranteService;
+	
+	@Autowired
+	private CategoriaRestauranteRepository categoriaRestauranteRepository;
+	
 	@GetMapping("/cliente/new")
 	public String newCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());	
 		ControllerHelper.setEditMode(model, false);
+		
 		return "cliente-cadastro";
 	}
 	
@@ -34,6 +43,8 @@ public class PublicController {
 	public String newRestaurante(Model model) {
 		model.addAttribute("restaurante", new Restaurante());	
 		ControllerHelper.setEditMode(model, false);
+		ControllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);
+		
 		return "restaurante-cadastro";
 	}
 
@@ -52,6 +63,26 @@ public class PublicController {
 		}
 		
 		ControllerHelper.setEditMode(model, false);
+		
 		return "cliente-cadastro";
+	}
+	
+	@PostMapping("/restaurante/save")
+	public String saveCliente(@ModelAttribute("restaurante") @Valid Restaurante restaurante,
+			Errors errors,
+			Model model) {
+		
+		if (!errors.hasErrors()) {
+			try {
+				restauranteService.saveRestaurante(restaurante);
+				model.addAttribute("msg", "Restaurante gravado com sucesso!");
+			} catch (ValidationException e) {
+				errors.rejectValue("email", null, e.getMessage());
+			}
+		}
+		
+		ControllerHelper.setEditMode(model, false);
+		
+		return "restaurante-cadastro";
 	}
 }
