@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import br.com.softblue.bluefood.infrastructure.web.validator.UploadConstraint;
+import br.com.softblue.bluefood.util.FileType;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.softblue.bluefood.domain.usuario.Usuario;
@@ -37,6 +39,7 @@ public class Restaurante extends Usuario {
 	private String logotipo;
 
 	@Transient
+	@UploadConstraint(acceptedTypes = FileType.PNG, message = "O arquivo não é um arquivo de imagem válido")
 	private MultipartFile logotipoFile;
 	
 	@NotNull(message = "A taxa de entrega não pode ser vázia")
@@ -64,7 +67,6 @@ public class Restaurante extends Usuario {
 			throw new IllegalStateException("É preciso gravar o registro");
 		}
 
-		// TODO: Trocar forma de ler a extensão
-		this.logotipo = String.format("%04d-logo-.%s", getId(), ".png");
+		this.logotipo = String.format("%04d-logo-.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
 	}
 }
