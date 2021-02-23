@@ -67,6 +67,6 @@ public class Restaurante extends Usuario {
 			throw new IllegalStateException("É preciso gravar o registro");
 		}
 
-		this.logotipo = String.format("%04d-logo-.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
+		this.logotipo = String.format("%04d-logo.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
 	}
 }
