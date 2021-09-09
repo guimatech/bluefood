@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
-	
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+
 	<body>
 		<div layout:fragment="content">
 			<div>
@@ -16,15 +18,15 @@
 					</fieldset>
 				</form>
 				<br />
-				
+
 				<div id="mensagemDeErro">
 					Aqui vai um exemplo de mensagem de erro
 				</div><br />
-				
+
 				<form method="get" th:action="@{/public/cliente/new}">
 					<input type="submit" value="Gostaria de criar a minha conta de cliente" />
 				</form>
-				
+
 				<form method="get" th:action="@{/public/restaurante/new}">
 					<input type="submit" value="Gostaria de criar a minha conta de restaurante" />
 				</form>

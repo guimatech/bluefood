@@ -1,13 +1,12 @@
 package br.com.softblue.bluefood.application.service;
 
+import br.com.softblue.bluefood.application.exception.ValidationException;
+import br.com.softblue.bluefood.domain.cliente.Cliente;
+import br.com.softblue.bluefood.domain.cliente.ClienteRepository;
 import br.com.softblue.bluefood.domain.restaurante.Restaurante;
 import br.com.softblue.bluefood.domain.restaurante.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.com.softblue.bluefood.application.exception.ValidationException;
-import br.com.softblue.bluefood.domain.cliente.Cliente;
-import br.com.softblue.bluefood.domain.cliente.ClienteRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
