@@ -62,10 +62,12 @@ public class Restaurante extends Usuario {
 	@ToString.Exclude
 	private Set<CategoriaRestaurante> categorias = new HashSet<>(0);
 
+	@OneToMany(mappedBy = "restaurante")
+	private Set<ItemCardapio> itensCardapio = new HashSet<>(0);
+
 	public void setLogotipoFileName() {
-		if (getId() == null) {
+		if (getId() == null)
 			throw new IllegalStateException("É preciso gravar o registro");
-		}
 
 		this.logotipo = String.format("%04d-logo.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
 	}

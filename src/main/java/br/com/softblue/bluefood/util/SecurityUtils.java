@@ -19,7 +19,7 @@ public class SecurityUtils {
         return (LoggedUser) authentication.getPrincipal();
     }
 
-    public Cliente loggedCliente() {
+    public static Cliente loggedCliente() {
         LoggedUser loggedUser = loggedUser();
 
         if (loggedUser == null) {
